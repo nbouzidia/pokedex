@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# 🎮 Pokédex React + TypeScript
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Une application web moderne de Pokédex construite avec React, TypeScript et Vite, consommant l'API NestJS Pokémon.
 
-Currently, two official plugins are available:
+![React](https://img.shields.io/badge/React-18-blue)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Vite](https://img.shields.io/badge/Vite-5-purple)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📋 Description
 
-## React Compiler
+Cette application permet de parcourir et découvrir les Pokémon avec une interface intuitive et moderne. Elle offre :
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📜 **Liste complète** des Pokémon avec pagination infinie
+- 🔍 **Filtres avancés** par nom et types
+- 🎯 **Détails complets** de chaque Pokémon (stats, évolutions)
+- 📱 **Design responsive** optimisé pour tous les appareils
+- ✨ **Interface moderne** avec animations et effets visuels
 
-## Expanding the ESLint configuration
+## 🚀 Fonctionnalités
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Page Principale
+- ✅ Affichage de 50 pokémons par défaut
+- ✅ Scroll infini pour charger plus de pokémons
+- ✅ Filtre par nom (recherche en temps réel)
+- ✅ Filtre par type(s) (sélection multiple)
+- ✅ Sélection du nombre de pokémons par page (25, 50, 100)
+- ✅ Cards affichant l'ID, l'image, le nom et les types
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Page Détail (Modal)
+- ✅ Affichage des informations complètes du pokémon
+- ✅ Image haute qualité
+- ✅ Statistiques détaillées avec barres de progression
+- ✅ Liste des évolutions
+- ✅ Bouton retour pour fermer le modal
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🛠️ Technologies Utilisées
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- **React 18** - Bibliothèque UI
+- **TypeScript** - Typage statique
+- **Vite** - Build tool ultra-rapide
+- **CSS3** - Animations et design moderne
+- **Fetch API** - Consommation de l'API REST
+
+## 📦 Installation
+
+```bash
+# Cloner le repository
+git clone https://github.com/nbouzidia/pokedex.git
+
+# Installer les dépendances
+npm install
+
+# Lancer en mode développement
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🌐 API
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+L'application consomme l'API : `https://nestjs-pokedex-api.vercel.app`
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Endpoints utilisés :
+- `GET /pokemons` - Liste des pokémons avec filtres
+- `GET /pokemons/:pokedexId` - Détails d'un pokémon
+- `GET /types` - Liste des types
+
+
+## 🏗️ Structure du Projet
+
+```
+src/
+├── components/
+│   ├── PokemonCard.tsx      # Carte d'affichage d'un pokémon
+│   ├── PokemonDetail.tsx    # Modal de détails
+│   └── Filters.tsx          # Filtres de recherche
+├── hooks/
+│   └── usePokemons.ts       # Hook personnalisé pour gérer les pokémons
+├── services/
+│   └── api.ts               # Appels API
+├── types/
+│   └── pokemon.ts           # Types TypeScript
+├── App.tsx                  # Composant principal
+└── main.tsx                 # Point d'entrée
 ```
